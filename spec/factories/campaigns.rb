@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :campaign do
-    type { "" }
     user
     title { "MyString" }
     description { "MyString" }

@@ -12,6 +12,13 @@ RSpec.describe UsersController, type: :controller do
       get :new
       expect(assigns(:user).class.name).to eq 'User'
     end
+
+    describe "with campaign_type query parameter" do
+      it "assigns @campaign_type to the query parameter" do
+        get :new, params: { campaign_type: "run_for_freedom" }
+        expect(assigns(:campaign_type)).to eq "run_for_freedom"
+      end
+    end
   end
 
   describe "POST #create" do
@@ -21,11 +28,6 @@ RSpec.describe UsersController, type: :controller do
       expect do
         post :create, :params => { user: params }
       end.to change(User, 'count').from(0).to(1)
-    end
-
-    it "creates a campaign with title `first name's run for freedom'" do
-      post :create, :params => { user: params }
-      expect(Campaign.first.title).to eq "Adam's Run For Freedom"
     end
 
     context "when the user is saved successfully" do 
@@ -43,6 +45,20 @@ RSpec.describe UsersController, type: :controller do
       it "re-renders the new page" do
         post :create, :params => { user: params }
         assert_template 'users/new'
+      end
+    end
+    
+    describe "with campaign type of `run_for_freedom`" do
+      it "creates a campaign with title `first name's run for freedom'" do
+        post :create, :params => { user: params, campaign_type: "run_for_freedom" }
+        expect(Campaign.first.title).to eq "Adam's Run For Freedom"
+      end
+    end
+
+    describe "with campaign type of `teachers`" do
+      it "creates a campaign with title `teacher's christmas giving" do
+        post :create, :params => { user: params, campaign_type: "teachers" }
+        expect(Campaign.last.title).to eq "#{params[:full_name]}'s Christmas Giving"
       end
     end
   end

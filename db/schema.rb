@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2018_10_30_124536) do
   enable_extension "plpgsql"
 
   create_table "campaigns", force: :cascade do |t|
-    t.string "type"
     t.integer "user_id"
+    t.string "campaign_type"
     t.string "slug"
     t.string "title"
     t.string "description"
