@@ -3,6 +3,7 @@ class CreateCampaigns < ActiveRecord::Migration[5.2]
     create_table :campaigns do |t|
       t.string :type
       t.integer :user_id
+      t.string :slug
       t.string :title
       t.string :description
       t.date :target_date

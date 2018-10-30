@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
   def show
-    @campaign = Campaign.find(params[:id])
+    @campaign = Campaign.friendly.find(params[:id])
   end
 end

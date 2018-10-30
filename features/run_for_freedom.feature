@@ -9,4 +9,4 @@ Feature: Run for Freedom Signup
     When I start a Run for Freedom campaign
     And I fill in my account details with full name "Jonathan Bowen"
     Then I should see "Jonathan's Run For Freedom"
-    And I should be at "/jonathan-bowen"
+    And I should be at "/jonathan-s-run-for-freedom"

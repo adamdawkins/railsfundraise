@@ -7,7 +7,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      campaign = @user.campaigns.create({ title: "#{@user.first_name}'s Run For Freedom" })
+      campaign = @user.campaigns.build({ title: "#{@user.first_name}'s Run For Freedom" })
+      campaign.save
       redirect_to campaign
     else 
       render :new

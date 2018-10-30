@@ -5,7 +5,7 @@ RSpec.describe CampaignsController, type: :controller do
     let(:campaign) { FactoryBot.create(:campaign) }
 
     before do
-      allow(Campaign).to receive(:find).and_return(campaign)
+      allow(Campaign).to receive_message_chain(:friendly, :find).and_return(campaign)
     end
 
     it "renders the show template" do
