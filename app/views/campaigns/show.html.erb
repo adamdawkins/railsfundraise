@@ -59,7 +59,7 @@
 									</span>
 									<div class="media-body">
                     <h5 class="mt-0"><%= donation.name %></h5>
-                    <p style="color: #666; font-style: italic; font-weight: normal">donated £<%= donation.amount %> <%= donation.created_at %></p>
+                    <p style="color: #666; font-style: italic; font-weight: normal">donated <%= number_to_currency donation.amount %> <%= time_ago_in_words(donation.created_at) %> ago</p>
                     <% if donation.comment.present? %>
                       <p><%= donation.comment %></p>
                     <% end %>
