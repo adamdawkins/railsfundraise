@@ -1,3 +1,8 @@
+
+Given("I have a campaign") do
+  @me.campaigns.create(FactoryBot.attributes_for(:campaign))
+end
+
 Given("a campaign exists") do
   @campaign = FactoryBot.create(:campaign)
 end

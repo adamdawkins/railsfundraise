@@ -1,3 +1,10 @@
+<%= content_for :head do %>
+  <script src="https://donorbox.org/install-popup-button.js" defer></script>
+          <script>
+  			window.DonorBox = { widgetLinkClassName: 'custom-dbox-popup' }
+          </script>
+
+<% end %>
 <div class="jumbotron jumbotron-fluid d-flex align-items-end pt-0 pb-4" style="height: 50vh; background-image: url('<%= asset_path "woman.jpg" %>'); background-position: center top; background-size: cover">
   <div class="container">
     <div class="row">
@@ -6,7 +13,7 @@
           <div class="media-body">
             <h1 class="display-6 d-none d-md-block"><%= @campaign.title %></h1>
             <h5 class="mt-0 text-light"><%= @campaign.user.full_name %></h5>
-            <a href="donorboxURL" class="custom-dbox-popup btn btn-primary">Donate</a>
+            <a href="https://donorbox.org/fundraisers-for-freedom-2?campaignId=<%= @campaign.id %>" class="custom-dbox-popup btn btn-primary">Donate</a>
           </div>
         </div>
       </div>
@@ -27,7 +34,7 @@
 							</div>
               <span class="ml-2" style="lineHeight: 25px">£<%= @campaign.target %></span>
 						</div>
-						<a href="donorboxURL" class="custom-dbox-popup btn btn-primary btn-block">Donate Now</a>
+            <a href="https://donorbox.org/fundraisers-for-freedom-2?campaignId=<%= @campaign.id %>" class="custom-dbox-popup btn btn-primary btn-block">Donate Now</a>
 						<ul class="mt-4">
 							<li class="mb-2"><span class="text-primary">£15</span> could pay for a simple hygiene pack for someone who just been rescued from slavery in the UK</li>
 
@@ -43,7 +50,7 @@
             <p class="lead">Donate to support <%= @campaign.user.first_name %>’s Run for Freedom!</p>
 					</div>
 					<h3>Donations</h3>
-          <%= @campaign.donations.each do |donation| %>
+          <% @campaign.donations.each do |donation| %>
 								<div class="media mb-3">
 									<span class="mr-3 rounded" style="background: red; text-align: center; padding: 1em; color: white">
                     <%= donation.initials %>

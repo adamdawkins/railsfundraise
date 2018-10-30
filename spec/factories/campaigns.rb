@@ -6,5 +6,6 @@ FactoryBot.define do
     description { "MyString" }
     target_date { "2018-10-30" }
     target { 1.5 }
+    slug { "string" }
   end
 end
