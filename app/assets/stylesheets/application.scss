@@ -1,0 +1,26 @@
+@import "variables";
+@import "typography";
+@import "bootstrap";
+
+body, html {
+	height: 100%;
+	min-height: 100vh;
+}
+
+.btn-facebook {
+	background-color: $facebook-blue;
+	color: $white;
+}
+
+pre {
+	font-family: $font-family-base;
+	font-size: 1em;
+	white-space: pre-wrap;
+}
+
+img {
+	max-width: 100%;
+}
+
+@import "./components/banner";
+@import "./components/header";

@@ -1,0 +1,36 @@
+// measurements
+
+$gutter: 30px;
+$icon-size: 200px;
+
+// colours
+
+$black: #000;
+$white: #FFF;
+
+$red: #F53A43;
+$pink: #EAE0DC;
+$pink-dark: #d4bfb7;
+$pink-light: #efeceb;
+$orange: #FBAA42;
+$green: #7AC882;
+$primary: $red;
+$facebook-blue: #3B5998;
+
+$theme-colors: (
+  "primary": $primary,
+	"info": $orange,
+	"success": $green,
+);
+
+// media queries
+
+$mobile: "screen and (max-width: 767px)";
+$mobile-and-tablet: "screen and (max-width: 1023px)";
+$tablet: "screen and (min-width: 768px) and (max-width: 1023px)";
+$desktop: "screen and (min-width: 1024px)";
+$desktop-not-tablet: "screen and (min-width: 1025px)";
+$desktop-small: "screen and (min-width: 1024px) and (max-width: 1299px)";
+
+
+$grid-gutter-width: 40px;

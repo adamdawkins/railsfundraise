@@ -1,0 +1,157 @@
+[class*="current"] {
+    > a {
+        border-bottom: solid 2px $red;
+    }
+}
+
+.header {
+		z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: $gutter;
+    color: $white;
+
+    transition: all .5s;
+
+		.logo {
+			max-width: 150px;
+		}
+
+    .fill & {
+        padding-top: $gutter/2;
+        padding-bottom: $gutter/2;
+        background-color: rgba($black, 0.85);
+
+        .login-with-facebook {
+            opacity: 1;
+        }
+    }
+
+    nav {
+        #menu-trigger {
+            display: none;
+        }
+
+        .sub-menu .sub-menu {
+            display: none;
+        }
+
+        .login-with-facebook {
+            transition: opacity .5s;
+            opacity: 0; // this is set to 1 when the nav bar is 'filled'
+        }
+    }
+
+    @media #{$mobile-and-tablet} {
+        padding-left: $gutter/2;
+        padding-right: $gutter/2;
+
+        nav {
+            margin-top: -7vw;
+            transition: margin .5s;
+
+            > ul {
+                display: none;
+
+                .show-nav & {
+                    display: block;
+                }
+
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                z-index: -1;
+                
+                padding: 100px 5vw;
+                text-align: right;
+
+                background-color: rgba($black, 0.85);
+
+                > li {
+                    margin-bottom: 5vw;
+                }
+
+                .sub-menu {
+                    padding: 5vw 5vw 0;
+                    border-right: solid .5vw $white;
+                }
+            }
+    
+            #menu-trigger {
+                display: block;
+                float: left;
+                cursor: pointer;
+
+                .fa-times {
+                    display: none;
+                }
+
+                .show-nav & {
+                    [class*="fa-"] {
+                        display: none;
+                    }
+                    .fa-times {
+                        display: inline;
+                    }
+                }
+            }
+
+            .fill & {
+                margin-top: 0;
+            }
+        }
+    }
+
+    @media #{$desktop} {
+        nav {
+            > ul {
+                float: left;
+    
+                > li {
+                    position: relative;
+                    display: inline-block;
+                    margin-left: $gutter;
+    
+                    > .sub-menu {
+                        display: none;
+    
+                        position: absolute;
+                        top: 20px;
+                        left: $gutter/-2;
+                        width: 320px;
+                        padding: $gutter/2;
+                        
+                        a {
+                            display: inline-block;
+                            padding: 7px;
+                            background-color: rgba($black, 0.85);
+                        }
+                    }
+    
+                    &:hover {
+                        > .sub-menu {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+		@media #{$mobile} {
+			.logo {
+				max-width: 25vw;
+			}
+		}
+}
+
+

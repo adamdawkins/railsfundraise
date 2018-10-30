@@ -1,0 +1,34 @@
+@import "{}/node_modules/bootstrap/scss/functions";
+@import "{}/node_modules/bootstrap/scss/variables";
+@import "{}/node_modules/bootstrap/scss/mixins";
+@import "variables";
+@import "typography";
+@import "{}/node_modules/bootstrap/scss/bootstrap";
+@import "{}/node_modules/bootstrap/scss/utilities";
+
+body, html {
+	height: 100%;
+	min-height: 100vh;
+}
+
+@import "components/banner";
+
+.btn-facebook {
+	background-color: $facebook-blue;
+	color: $white;
+}
+
+pre {
+	font-family: $font-family-base;
+	font-size: 1em;
+	white-space: pre-wrap;
+}
+
+.bg-light {
+}
+
+@import "./components/header";
+
+img {
+	max-width: 100%;
+}
