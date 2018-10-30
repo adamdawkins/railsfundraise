@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_30_112347) do
+ActiveRecord::Schema.define(version: 2018_10_30_124536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 2018_10_30_112347) do
     t.string "description"
     t.date "target_date"
     t.float "target"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.float "amount"
+    t.string "name"
+    t.string "comment"
+    t.boolean "is_anonymous", default: false
+    t.integer "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

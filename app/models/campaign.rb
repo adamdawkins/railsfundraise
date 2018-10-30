@@ -3,6 +3,7 @@ class Campaign < ApplicationRecord
   friendly_id :title, use: :slugged
 
   belongs_to :user
+  has_many :donations
 
   validates_presence_of :title
 

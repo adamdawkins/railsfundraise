@@ -43,6 +43,20 @@
             <p class="lead">Donate to support <%= @campaign.user.first_name %>’s Run for Freedom!</p>
 					</div>
 					<h3>Donations</h3>
+          <%= @campaign.donations.each do |donation| %>
+								<div class="media mb-3">
+									<span class="mr-3 rounded" style="background: red; text-align: center; padding: 1em; color: white">
+                    <%= donation.initials %>
+									</span>
+									<div class="media-body">
+                    <h5 class="mt-0"><%= donation.name %></h5>
+                    <p style="color: #666; font-style: italic; font-weight: normal">donated £<%= donation.amount %> <%= donation.created_at %></p>
+                    <% if donation.comment.present? %>
+                      <p><%= donation.comment %></p>
+                    <% end %>
+									</div>
+								</div>
+          <% end %>
 				</div>
 			</div>
 		</div>
