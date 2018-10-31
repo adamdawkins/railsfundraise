@@ -11,14 +11,14 @@ class UsersController < ApplicationController
       campaign = Campaign.new_landing_campaign(params[:campaign_type], @user)
       campaign.save
       redirect_to campaign
-    else 
+    else
       render :new
     end
   end
 
   private
 
-  def user_params
-    params.require(:user).permit(:full_name, :email, :password)
-  end
+    def user_params
+      params.require(:user).permit(:full_name, :email, :password)
+    end
 end

@@ -10,7 +10,7 @@ RSpec.describe CampaignsController, type: :controller do
 
     it "renders the show template" do
       get :show, params: { id: 1 }
-      
+
       assert_template 'campaigns/show'
     end
 

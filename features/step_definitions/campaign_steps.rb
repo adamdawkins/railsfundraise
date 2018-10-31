@@ -1,4 +1,3 @@
-
 Given("I have a campaign") do
   @me.campaigns.create(FactoryBot.attributes_for(:campaign))
 end
@@ -18,4 +17,3 @@ end
 When("I start a Run for Freedom campaign") do
   visit "/signup?campaign=runforfreedom"
 end
-

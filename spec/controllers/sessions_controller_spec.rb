@@ -21,15 +21,15 @@ RSpec.describe SessionsController, type: :controller do
         allow(user).to receive_message_chain(:campaigns, :first).and_return(campaign)
       end
       it "should authenticate user and redirect" do
-        post :create, params: { :email => "some@email.com", :password => "secret" }
+        post :create, params: { email: "some@email.com", password: "secret" }
 
         expect(user).to have_received(:authenticate).with("secret")
         expect(session[:user_id]).to eql user.id
         expect(flash[:notice]).to_not be_nil
       end
 
-      it "should redirect to user's campaign" do 
-        post :create, params: { :email => "some@email.com", :password => "secret" }
+      it "should redirect to user's campaign" do
+        post :create, params: { email: "some@email.com", password: "secret" }
         expect(response).to redirect_to(campaign_path(campaign))
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe SessionsController, type: :controller do
       it "should not authenticate if user not exists" do
         allow(User).to receive(:find_by).and_return(nil)
 
-        post :create, params: { :email => "some@email.com", :password => "secret" }
+        post :create, params: { email: "some@email.com", password: "secret" }
         expect(assigns(:user)).to be_nil
       end
 
@@ -46,7 +46,7 @@ RSpec.describe SessionsController, type: :controller do
         allow(User).to receive(:find_by).with(email: "some@email.com").and_return(user)
         allow(user).to receive(:authenticate).and_return(false)
 
-        post :create, params: { :email => "some@email.com", :password => "not_sceret" }
+        post :create, params: { email: "some@email.com", password: "not_sceret" }
 
         expect(session[:user_id]).to be_nil
       end

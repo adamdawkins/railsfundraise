@@ -25,4 +25,3 @@ When("I login with email {string} and password {string}") do |email, password|
 
   find('input[name="commit"]').click
 end
-
