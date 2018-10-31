@@ -52,20 +52,9 @@
             <p class="lead">Donate to support <%= @campaign.user.first_name %>!</p>
 					</div>
 					<h3>Donations</h3>
-          <% @campaign.donations.each do |donation| %>
-								<div class="media mb-3">
-									<span class="mr-3 rounded" style="background: red; text-align: center; padding: 1em; color: white">
-                    <%= donation.initials %>
-									</span>
-									<div class="media-body">
-                    <h5 class="mt-0"><%= donation.name %></h5>
-                    <p style="color: #666; font-style: italic; font-weight: normal">donated <%= number_to_currency donation.amount %> <%= time_ago_in_words(donation.created_at) %> ago</p>
-                    <% if donation.comment.present? %>
-                      <p><%= donation.comment %></p>
-                    <% end %>
-									</div>
-								</div>
-          <% end %>
+          <div id="donations">
+            <%= render @campaign.donations %>
+          </div>
 				</div>
 			</div>
 		</div>
