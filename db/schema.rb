@@ -29,9 +29,11 @@ ActiveRecord::Schema.define(version: 2018_10_30_124536) do
 
   create_table "donations", force: :cascade do |t|
     t.float "amount"
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
     t.string "comment"
     t.boolean "is_anonymous", default: false
+    t.boolean "is_gift_aid", default: false
     t.integer "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

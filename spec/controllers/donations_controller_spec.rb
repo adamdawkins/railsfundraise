@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe DonationsController, type: :controller do
   describe "POST /:campaign_id/donations" do
     let(:campaign) { FactoryBot.create(:campaign) }
-    let(:donation_params) { { amount: 10.0, name: "Adam Dawkins", comment: "Good luck!" } }
+    let(:donation_params) { { amount: 10.0, first_name: "Adam", last_name: "Dawkins", comment: "Good luck!" } }
 
     before do
       allow(Campaign).to receive_message_chain(:friendly, :find).and_return(campaign)

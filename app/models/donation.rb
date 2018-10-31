@@ -5,6 +5,6 @@ class Donation < ApplicationRecord
   validates_presence_of :campaign_id
 
   def initials
-    self.name.split.map(&:first).join.upcase
+    [first_name, last_name].map(&:first).join.upcase
   end
 end

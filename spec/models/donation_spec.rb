@@ -8,7 +8,8 @@ RSpec.describe Donation, type: :model do
 
   describe "initials" do
     it "returns the initials of the name" do
-      subject.name = 'Jonathan Bowen'
+      subject.first_name = 'Jonathan'
+      subject.last_name = 'Bowen'
       expect(subject.initials).to eq 'JB'
     end
   end
