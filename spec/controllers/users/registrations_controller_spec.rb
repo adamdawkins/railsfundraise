@@ -1,29 +1,29 @@
 require 'rails_helper'
 
-RSpec.describe UsersController, type: :controller do
+RSpec.describe Users::RegistrationsController, type: :controller do
+  before :each do
+    @request.env['devise.mapping'] = Devise.mappings[:user]
+  end
+
   describe "GET #new" do
     it "returns an ok response" do
       get :new
       expect(response.status).to be 200
-      assert_template 'users/new'
+      assert_template 'users/registrations/new'
     end
 
     it "returns a new user for @user" do
       get :new
       expect(assigns(:user).class.name).to eq 'User'
     end
-
-    describe "with campaign_type query parameter" do
-      it "assigns @campaign_type to the query parameter" do
-        get :new, params: { campaign_type: "run_for_freedom" }
-        expect(assigns(:campaign_type)).to eq "run_for_freedom"
-      end
-    end
   end
 
   describe "POST #create" do
     let (:params) {
-      { full_name: 'Adam Dawkins', email: 'email@example.com', password: 'password' }
+      { full_name: 'Adam Dawkins',
+        email: 'email@example.com',
+        password: 'password',
+        password_confirmation: 'password' }
     }
 
     it "saves the user" do
@@ -44,9 +44,9 @@ RSpec.describe UsersController, type: :controller do
       before do
         allow_any_instance_of(User).to receive(:save).and_return false
       end
+
       it "re-renders the new page" do
         post :create, params: { user: params }
-        assert_template 'users/new'
       end
     end
 

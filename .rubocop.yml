@@ -20,6 +20,9 @@ AllCops:
 #### Strings ####
 Style/FrozenStringLiteralComment:
   Enabled: false
+Style/AndOr:
+  EnforcedStyle: conditionals
+
 StringLiterals:
   Enabled: false
 
