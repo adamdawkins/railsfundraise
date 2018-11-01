@@ -17,10 +17,10 @@ RSpec.describe DonationsController, type: :controller do
       end.to change(campaign.donations, 'size').from(0).to(1)
     end
 
-    it("redirects to the campaign page") do
-      post :create, params: { campaign_id: campaign.id, donation: donation_params }
+    it("responds successfully to AJAX request") do
+      post :create, params: { campaign_id: campaign.id, donation: donation_params }, xhr: true
 
-      expect(response).to redirect_to(campaign_path(campaign))
+      expect(response).to be_successful
     end
   end
 end
