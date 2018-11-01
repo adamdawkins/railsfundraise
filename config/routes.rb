@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   get 'run-for-freedom', to: 'landings#run_for_freedom'
   get 'teachers', to: 'landings#teachers'
-  mount ActionCable.server => '/cable'
 
   resources :campaigns, path: '', except: [:index] do
     resources :donations
