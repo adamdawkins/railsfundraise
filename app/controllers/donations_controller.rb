@@ -3,13 +3,17 @@ class DonationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
   def create
-    donation = @campaign.donations.create(donation_params)
-    redirect_to @campaign
+    donation = @campaign.donations.create!(donation_params)
+    DonationsChannel.broadcast_to(@campaign, { donation: render_donation(donation) })
   end
 
   private
     def set_campaign
       @campaign = Campaign.friendly.find(params[:campaign_id])
+    end
+
+    def render_donation donation
+      render(partial: 'donation', locals: { donation: donation })
     end
 
     def donation_params

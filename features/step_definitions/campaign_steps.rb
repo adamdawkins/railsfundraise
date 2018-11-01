@@ -10,8 +10,8 @@ Given("I am on the campaign page") do
   visit campaign_path @campaign
 end
 
-When("I donate £{int} to the campaign") do |amount|
-  post campaign_donations_path @campaign, params: { donation: { amount: amount, first_name: 'Joe', last_name: 'Bloggs' } }
+When("I donate £{int} to the campaign with comment {string}") do |amount, comment|
+  post campaign_donations_path @campaign, params: { donation: { amount: amount, first_name: 'Joe', last_name: 'Bloggs', comment: comment  } }
 end
 
 When("I start a Run for Freedom campaign") do

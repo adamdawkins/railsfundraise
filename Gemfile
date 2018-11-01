@@ -69,7 +69,7 @@ group :test do
   gem 'rails-controller-testing' # If you are using Rails 5.x
   gem 'cucumber-rails', require: false
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  gem 'capybara', '>= 2.7'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
