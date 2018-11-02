@@ -1,0 +1,15 @@
+.navbar-brand {
+  max-width: 150px;
+  transition: all .5s ease;
+}
+
+.navbar [class*=active]>a {
+  border-bottom: solid 2px $primary;
+}
+
+.nav-link {
+  color: $white;
+  text-transform: uppercase;
+  padding: 0 !important;
+  margin: 0 .5rem;
+}
