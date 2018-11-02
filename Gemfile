@@ -13,7 +13,7 @@ gem 'devise'
 gem 'friendly_id'
 gem 'jbuilder', '~> 2.5'
 gem 'puma', '~> 3.11'
-gem 'redis'
+gem 'redis', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
@@ -51,6 +51,3 @@ group :test do
   gem 'shoulda-matchers', '4.0.0.rc1'
   gem 'simplecov', require: false
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
