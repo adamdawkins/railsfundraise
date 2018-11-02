@@ -18,7 +18,7 @@ class Campaign < ApplicationRecord
   end
 
   def raised
-    0
+    donations.sum(&:amount)
   end
 
   def progress
