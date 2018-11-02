@@ -37,6 +37,6 @@ Given("I have reset the password for {string} to {string}") do |email, password|
   }
 
   fill_in "New password", with: password
-  fill_in "Confirm new password", with: password
+  fill_in "user[password_confirmation]", with: password
   click_on "Change my password"
 end
