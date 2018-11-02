@@ -28,12 +28,12 @@
           </h4>
 					<div class="border p-4 mb-4">
             <% if @campaign.campaign_type == 'CHALLENGE' %>
-              <h1 class="d4">£ <span id="raised"><%= @campaign.raised %></span> raised</h1>
+              <h1 class="d4">£<span id="raised"><%= number_with_precision @campaign.raised, precision: 2 %></span> raised</h1>
               <div class="d-flex mb-4">
                 <div class="progress flex-grow-1" style="height: 25px">
                   <div class="progress-bar bg-success" role="progressbar" style="width: <%= @campaign.progress %>%;" aria-valuenow="<%= @campaign.progress %>" aria-valuemin="0" aria-valuemax="100"><%= @campaign.progress.round %>%</div>
                 </div>
-                <span class="ml-2" style="lineHeight: 25px">£<%= @campaign.target %></span>
+                <span class="ml-2" style="lineHeight: 25px">£<%= number_with_precision @campaign.target, precision: 2 %></span>
               </div>
             <% end %>
             <a href="https://donorbox.org/fundraisers-for-freedom-2?campaignId=<%= @campaign.slug %>" class="custom-dbox-popup btn btn-primary btn-block">Donate Now</a>
