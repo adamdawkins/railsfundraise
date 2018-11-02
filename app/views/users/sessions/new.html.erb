@@ -1,26 +1,30 @@
+<%= content_for :body_styles do %>
+  background-image: url('<%= asset_path "woman.jpg" %>'); background-size: cover; background-position: center right; background-repeat: no-repeat
+<% end %>
+
+<%= render layout: "layouts/accounts" do %>
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
+    <div class="form-group mb-4">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control", autocomplete: "email" %>
+    </div>
+    <div class="form-group mb-4">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control", autocomplete: "current-password" %>
+    </div>
   <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="form-check mb-4">
+      <%= f.check_box :remember_me, class: "form-check-input" %>
+      <%= f.label :remember_me, class: "form-check-label" %>
     </div>
   <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="actions mb-4">
+    <%= f.submit "Log in", class: "btn btn-primary" %>
   </div>
 <% end %>
 
 <%= render "users/shared/links" %>
+<% end %>
