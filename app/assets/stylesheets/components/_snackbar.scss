@@ -1,0 +1,14 @@
+.snackbar-container {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.snackbar {
+	padding: 1rem 2rem;
+	background: #333;
+	color: white;
+	border-radius: .25rem .25rem 0 0;
+}
