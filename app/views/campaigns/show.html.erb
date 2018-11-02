@@ -28,7 +28,7 @@
           </h4>
 					<div class="border p-4 mb-4">
             <% if @campaign.campaign_type == 'CHALLENGE' %>
-              <h1 class="d4">£ <%= @campaign.raised %> raised</h1>
+              <h1 class="d4">£ <span id="raised"><%= @campaign.raised %></span> raised</h1>
               <div class="d-flex mb-4">
                 <div class="progress flex-grow-1" style="height: 25px">
                   <div class="progress-bar bg-success" role="progressbar" style="width: <%= @campaign.progress %>%;" aria-valuenow="<%= @campaign.progress %>" aria-valuemin="0" aria-valuemax="100"><%= @campaign.progress %>%</div>

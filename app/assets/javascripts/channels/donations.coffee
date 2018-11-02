@@ -13,4 +13,8 @@ App.donations = App.cable.subscriptions.create { channel: "DonationsChannel", sl
 
   received: (data) ->
     console.log('DonationsChannel', data)
+    @update_totals(data.raised)
     @collection().appendChild(html(data.donation))
+
+  update_totals: (raised) ->
+    document.getElementById('raised').innerText = raised
