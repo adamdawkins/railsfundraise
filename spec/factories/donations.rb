@@ -5,5 +5,6 @@ FactoryBot.define do
     last_name { "MyString" }
     comment { "MyString" }
     is_anonymous { false }
+    campaign
   end
 end

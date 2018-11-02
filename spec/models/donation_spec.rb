@@ -13,4 +13,15 @@ RSpec.describe Donation, type: :model do
       expect(subject.initials).to eq 'JB'
     end
   end
+
+  describe "after_commit" do
+    before do
+      allow(DonationsRelayJob).to receive(:perform_later)
+    end
+    it "calls DonationsRelayJob.perform after commit" do
+      subject.run_callbacks(:commit)
+
+      expect(DonationsRelayJob).to have_received(:perform_later).with(subject)
+    end
+  end
 end

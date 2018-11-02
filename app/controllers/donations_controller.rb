@@ -4,7 +4,6 @@ class DonationsController < ApplicationController
 
   def create
     donation = @campaign.donations.create!(donation_params)
-    DonationsChannel.broadcast_to(@campaign, donation: render_donation(donation))
   end
 
   private
