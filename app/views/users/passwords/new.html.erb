@@ -1,16 +1,19 @@
+<%= content_for :body_styles do %>
+  background-image: url('<%= asset_path "woman.jpg" %>'); background-size: cover; background-position: center right; background-repeat: no-repeat
+<% end %>
+
+<%= render layout: "layouts/accounts" do %>
 <h2>Forgot your password?</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= render partial: "users/fields/email", locals: { f: f } %>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+  <div class="actions mb-4">
+    <%= f.submit "Send me reset password instructions", class: "btn btn-primary" %>
   </div>
 <% end %>
 
 <%= render "users/shared/links" %>
+<% end %>

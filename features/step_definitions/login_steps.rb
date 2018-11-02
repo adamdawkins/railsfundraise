@@ -1,5 +1,5 @@
 Given("I am not logged in") do
-  @me = nil
+  Capybara.current_session.driver.browser.clear_cookies
 end
 
 Given("I am logged in") do
@@ -24,4 +24,8 @@ When("I login with email {string} and password {string}") do |email, password|
   fill_in "Password", with: password
 
   find('input[name="commit"]').click
+end
+
+Then("I should be logged in") do
+  steps %{ Then I should see "Logout" }
 end
