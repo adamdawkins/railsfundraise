@@ -22,3 +22,16 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# Services
+For Action Cable to work properly within ActiveJobs, you need to install redis locally and run it.
+
+```
+brew install redis
+```
+
+to run:
+
+```
+redis-server
+```

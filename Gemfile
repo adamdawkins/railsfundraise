@@ -13,7 +13,7 @@ gem 'devise'
 gem 'friendly_id'
 gem 'jbuilder', '~> 2.5'
 gem 'puma', '~> 3.11'
-gem 'redis', require: false
+gem 'redis'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
