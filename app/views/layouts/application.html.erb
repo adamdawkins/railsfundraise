@@ -4,6 +4,7 @@
     <title>Railsfundraise</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -11,9 +12,14 @@
   </head>
 
   <body style="<%= yield :body_styles %>">
-    <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-    <% end -%>
-    <%= yield %>
+    <%= render 'shared/header' %>
+    <main>
+      <%= yield %>
+      <% flash.each do |name, msg| -%>
+        <div class="snackbar-container">
+          <%= content_tag :div, msg, class: "#{name} snackbar" %>
+        </div>
+      <% end -%>
+    </main>
   </body>
 </html>

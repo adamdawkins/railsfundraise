@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg fixed-top pt-2 py-4 align-middle">
+  <a class="navbar-brand" href="#">
+    <img src="https://www.justiceandcare.org/wp-content/themes/justice-care/img/j-c-logo-white.png" alt="Justice &amp; Care">
+  </a>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Run for freedom</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Birthdays</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Teachers</a>
+      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "My Campaign", current_user.campaigns.first, class: "nav-link" %>
+        </li>
+        <li>
+          <li class="nav-item">
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", login_path, class: "btn btn-secondary" %>
+          </li>
+        <% end %>
+    </ul>
+  </div>
+</nav>

@@ -43,10 +43,13 @@ group :test do
   gem 'chromedriver-helper'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'email_spec'
+  gem 'launchy'
   gem 'rails-controller-testing' # If you are using Rails 5.x
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '4.0.0.rc1'
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

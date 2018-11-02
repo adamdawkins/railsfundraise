@@ -26,5 +26,40 @@ RSpec.describe Campaign, type: :model do
         expect(campaign.target_date).to eq Date.new(2018, 12, 25)
       end
     end
+
+    describe "#raised" do
+      describe "with no donations" do
+        it "returns 0" do
+          expect(subject.raised).to eq 0
+        end
+      end
+      describe "with donations" do
+        let(:campaign) { FactoryBot.create(:campaign) }
+        it "returns the sum" do
+          campaign.donations.create([
+            FactoryBot.attributes_for(:donation, amount: 10),
+            FactoryBot.attributes_for(:donation, amount: 5)
+          ])
+          expect(campaign.raised).to eq 15
+        end
+      end
+    end
+    describe "#progress" do
+      let(:campaign) { FactoryBot.create(:campaign, target: 200) }
+      describe "with no donations" do
+        it "returns 0" do
+          expect(campaign.progress).to eq 0
+        end
+      end
+      describe "with donations" do
+        it "returns the sum" do
+          campaign.donations.create([
+            FactoryBot.attributes_for(:donation, amount: 10),
+            FactoryBot.attributes_for(:donation, amount: 5)
+          ])
+          expect(campaign.progress).to eq 7.5
+        end
+      end
+    end
   end
 end
