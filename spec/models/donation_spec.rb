@@ -19,7 +19,7 @@ RSpec.describe Donation, type: :model do
       allow(DonationsRelayJob).to receive(:perform_later)
     end
     it "calls DonationsRelayJob.perform after commit" do
-      subject.run_callbacks(:commit)
+      subject.run_callbacks(:create)
 
       expect(DonationsRelayJob).to have_received(:perform_later).with(subject)
     end
