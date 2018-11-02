@@ -4,7 +4,7 @@ class DonationsController < ApplicationController
 
   def create
     donation = @campaign.donations.create!(donation_params)
-    DonationsChannel.broadcast_to(@campaign, { donation: render_donation(donation) })
+    DonationsChannel.broadcast_to(@campaign, donation: render_donation(donation))
   end
 
   private
@@ -12,7 +12,7 @@ class DonationsController < ApplicationController
       @campaign = Campaign.friendly.find(params[:campaign_id])
     end
 
-    def render_donation donation
+    def render_donation(donation)
       render(partial: 'donation', locals: { donation: donation })
     end
 
