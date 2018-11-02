@@ -12,6 +12,13 @@ RSpec.describe Donation, type: :model do
       subject.last_name = 'Bowen'
       expect(subject.initials).to eq 'JB'
     end
+    describe "when donation is anoymous" do
+      it "returns ??" do
+        subject.is_anonymous = true
+
+        expect(subject.initials).to eq '??'
+      end
+    end
   end
 
   describe "after_commit" do

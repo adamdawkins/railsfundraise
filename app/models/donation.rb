@@ -7,6 +7,10 @@ class Donation < ApplicationRecord
   after_create { DonationsRelayJob.perform_now(self) }
 
   def initials
-    [first_name, last_name].map(&:first).join.upcase
+    if is_anonymous?
+      "??"
+    else
+      [first_name, last_name].map(&:first).join.upcase
+    end
   end
 end
