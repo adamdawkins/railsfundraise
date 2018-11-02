@@ -16,12 +16,12 @@ RSpec.describe Donation, type: :model do
 
   describe "after_commit" do
     before do
-      allow(DonationsRelayJob).to receive(:perform_later)
+      allow(DonationsRelayJob).to receive(:perform_now)
     end
     it "calls DonationsRelayJob.perform after commit" do
       subject.run_callbacks(:create)
 
-      expect(DonationsRelayJob).to have_received(:perform_later).with(subject)
+      expect(DonationsRelayJob).to have_received(:perform_now).with(subject)
     end
   end
 end
