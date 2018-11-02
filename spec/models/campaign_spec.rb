@@ -44,5 +44,22 @@ RSpec.describe Campaign, type: :model do
         end
       end
     end
+    describe "#progress" do
+      let(:campaign) { FactoryBot.create(:campaign, target: 200) }
+      describe "with no donations" do
+        it "returns 0" do
+          expect(campaign.progress).to eq 0
+        end
+      end
+      describe "with donations" do
+        it "returns the sum" do
+          campaign.donations.create([
+            FactoryBot.attributes_for(:donation, amount: 10),
+            FactoryBot.attributes_for(:donation, amount: 5)
+          ])
+          expect(campaign.progress).to eq 7.5
+        end
+      end
+    end
   end
 end

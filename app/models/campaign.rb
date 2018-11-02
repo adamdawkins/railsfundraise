@@ -22,8 +22,9 @@ class Campaign < ApplicationRecord
   end
 
   def progress
-    0
+    (raised / target) * 100
   end
+
 
   private
     def self.teacher_campaign(user)
