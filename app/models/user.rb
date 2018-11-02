@@ -1,9 +1,10 @@
 class User < ApplicationRecord
-  has_secure_password
-
   has_many :campaigns
 
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
   def first_name
-    self.full_name.split(' ').first
+    full_name.split(' ').first
   end
 end

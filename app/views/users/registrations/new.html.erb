@@ -7,28 +7,27 @@
       <div class="row">
         <div class="col">
           <h5 class="mb-4">Create an account.</h5>
-          <%= form_for @user, class: "bg-white p-3 border mb-4" do |f| %>
-            <%= hidden_field_tag :campaign_type, @campaign_type %>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+            <%= hidden_field_tag :campaign_type, params[:campaign_type] %>
             <div class="form-group mb-4">
               <%= f.label :full_name %>
-              <%= f.text_field :full_name, class: "form-control" %>
+              <%= f.text_field :full_name, class: "form-control", autocomplete: "name", autofocus: true %>
             </div>
             <div class="form-group mb-4">
               <%= f.label :email %>
-              <%= f.email_field :email, class: "form-control" %>
+              <%= f.email_field :email, class: "form-control", autocomplete: "email" %>
             </div>
             <div class="form-group mb-4">
               <%= f.label :password %>
-              <%= f.password_field :password, class: "form-control" %>
+              <%= f.password_field :password, class: "form-control", autocomplete: "password" %>
+            </div>
+            <div class="form-group mb-4">
+              <%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "password" %>
             </div>
             <%= f.submit "Sign Up", class: "btn btn-primary btn-block" %>
           <% end %>
-          <!-- <form class="bg&#45;white p&#45;3 border mb&#45;4" onSubmit={onSubmit}> -->
-          <!--   <TextField name="name" placeholder="your full name" /> -->
-          <!--   <EmailField name="email" placeholder="email" help="We'll email you updates about your campaign, we'll never give your email address to anyone else." /> -->
-          <!--   <PasswordField name="password" placeholder="password" /> -->
-          <!--   <button type="submit" class="btn btn&#45;primary btn&#45;block">Sign Up</button> -->
-          <!-- </form> -->
           <small class="text-muted">You can find out more about our <a href="https://www.justiceandcare.com/privacy-policy/">privacy policy</a></small>
         </div>
       </div>

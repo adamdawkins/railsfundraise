@@ -19,7 +19,7 @@ end
 
 
 When("I login with email {string} and password {string}") do |email, password|
-  visit "/login"
+  visit new_user_session_path
   fill_in "Email", with: email
   fill_in "Password", with: password
 
