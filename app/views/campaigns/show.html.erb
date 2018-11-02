@@ -53,7 +53,11 @@
 					</div>
 					<h3>Donations</h3>
           <div id="donations" data-channel="donations">
-            <%= render @campaign.donations %>
+            <% if @campaign.donations.any? %>
+              <%= render @campaign.donations %>
+            <% else %>
+              <p>Be the first to donate!</p>
+            <% end %>
           </div>
 				</div>
 			</div>
