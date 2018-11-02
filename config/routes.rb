@@ -17,5 +17,5 @@ Rails.application.routes.draw do
     resources :donations
   end
 
-  root to: 'landings#run_for_freedom'
+  root to: 'home#index'
 end
