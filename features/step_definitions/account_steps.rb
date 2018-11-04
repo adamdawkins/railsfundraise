@@ -13,8 +13,13 @@ When("I fill in my account details with full name {string}") do |full_name|
   fill_in "user[email]", with: "joe.bloggs@exapmel.com"
   fill_in "user[password]", with: "password"
   fill_in "user[password_confirmation]", with: "password"
+end
 
-  find('input[name="commit"]').click
+When("I fill in my account details with full name {string} and submit the form") do |full_name|
+  steps %{
+    When I fill in my account details with full name "#{full_name}"
+    And I submit the form
+  }
 end
 
 When("I request reset password instructions to {string}") do |email|
