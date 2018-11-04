@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :user do
     full_name { "MyString" }
     password { "not blank" }
-    sequence(:email) { |n| "email#{n}@example.com" }
+    email { Faker::Internet.email }
   end
 end

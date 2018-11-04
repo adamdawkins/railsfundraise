@@ -6,6 +6,10 @@ Given("a campaign exists") do
   @campaign = FactoryBot.create(:campaign)
 end
 
+Given("{int} campaigns exist") do |number|
+  @campaigns = number.times.collect { FactoryBot.create(:campaign) }
+end
+
 Given("I am on the campaign page") do
   visit campaign_path @campaign
 end
@@ -21,4 +25,10 @@ end
 
 When("I start a Run for Freedom campaign") do
   visit "/signup?campaign=runforfreedom"
+end
+
+Then("I should see the campaigns") do
+  @campaigns.each do |campaign|
+    expect(page).to have_content(campaign.title)
+  end
 end

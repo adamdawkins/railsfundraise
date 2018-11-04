@@ -19,4 +19,22 @@ RSpec.describe CampaignsController, type: :controller do
       expect(assigns(:campaign)).to be_a Campaign
     end
   end
+
+  describe "GET index" do
+    let(:campaigns) { 2.times.collect { FactoryBot.build(:campaign) } }
+
+    before do
+      allow(Campaign).to receive(:all).and_return campaigns
+    end
+
+    it "renders the index template" do
+      get :index
+      assert_template 'campaigns/index'
+    end
+
+    it "assigns @campaigns to all campaigns" do
+      get :index
+      expect(assigns(:campaigns)).to eq campaigns
+    end
+  end
 end

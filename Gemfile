@@ -21,6 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'guard'
   gem 'guard-cucumber'
   gem 'guard-rspec'

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :campaign do
     user
-    title { "MyString" }
+    title { Faker::Book.title }
     description { "MyString" }
     target_date { "2018-10-30" }
     target { 1.5 }
