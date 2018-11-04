@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'campaigns/show.html.erb' do
   describe "with a challenge campaign" do
-    let(:campaign) { FactoryBot.build_stubbed(:campaign, campaign_type: 'CHALLENGE', target: 100)}
+    let(:campaign) { FactoryBot.build_stubbed(:campaign, campaign_type: 'CHALLENGE', target: 100) }
 
     before do
       allow(campaign).to receive(:raised).and_return(50)
@@ -26,7 +26,7 @@ describe 'campaigns/show.html.erb' do
   end
 
   describe "with an occasion campaign" do
-    let(:campaign) { FactoryBot.build_stubbed(:campaign, campaign_type: 'OCCASION')}
+    let(:campaign) { FactoryBot.build_stubbed(:campaign, campaign_type: 'OCCASION') }
 
     before do
       assign(:campaign, campaign)
@@ -53,7 +53,7 @@ describe 'campaigns/show.html.erb' do
 
       assign(:campaign, campaign)
 
-      render 
+      render
 
       donations.each do |donation|
         expect(rendered).to have_content(donation.amount)

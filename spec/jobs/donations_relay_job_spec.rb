@@ -12,8 +12,9 @@ RSpec.describe DonationsRelayJob, type: :job do
 
     it "broadcasts to DonationsChannel with the campaign html" do
       subject.perform(donation)
-      expect(DonationsChannel).to have_received(:broadcast_to).with(donation.campaign, donation: :some_html)
+      expect(DonationsChannel).to(
+        have_received(:broadcast_to).with(donation.campaign, donation: :some_html)
+      )
     end
   end
-
 end

@@ -4,7 +4,10 @@ class DonationsRelayJob < ApplicationJob
   def perform(donation)
     DonationsChannel.broadcast_to(
       donation.campaign,
-      donation: DonationsController.render(partial: 'donations/donation', locals: { donation: donation }),
+      donation: DonationsController.render(
+        partial: 'donations/donation',
+        locals: { donation: donation }
+      ),
       raised: donation.campaign.raised
     )
   end

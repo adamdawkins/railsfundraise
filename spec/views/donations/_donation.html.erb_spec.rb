@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "donations/_donation.html.erb" do 
+describe "donations/_donation.html.erb" do
   let (:donation) {
     FactoryBot.build_stubbed(:donation,
                              first_name: "Joe",
@@ -47,13 +47,9 @@ describe "donations/_donation.html.erb" do
     it "does not show the user's initials" do
       expect(rendered).to_not have_content("JB")
     end
-    
-    it "says 'Anonymous Donor'" do
 
+    it "says 'Anonymous Donor'" do
       expect(rendered).to have_content("Anonymous Donor")
     end
   end
-
-
 end
-
