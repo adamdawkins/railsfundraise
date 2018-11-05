@@ -1,0 +1,12 @@
+<div class="col-md-4 p-2">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= campaign.title %></h5>
+      <p class="card-text d-flex justify-content-between">
+      <span><%= campaign.donations.size %> donations</span>
+      <span><%= number_to_currency campaign.raised, unit: "£" %> raised</span>
+      </p>
+      <%= link_to "View campaign", campaign %>
+    </div>
+  </div>
+</div>

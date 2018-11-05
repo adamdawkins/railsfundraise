@@ -11,10 +11,6 @@ class DonationsController < ApplicationController
       @campaign = Campaign.friendly.find(params[:campaign_id])
     end
 
-    def render_donation(donation)
-      render(partial: 'donation', locals: { donation: donation })
-    end
-
     def donation_params
       params.require(:donation).permit(
         :amount, :first_name, :last_name, :is_anonymous, :comment, :is_gift_aid

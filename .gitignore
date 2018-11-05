@@ -33,3 +33,7 @@
 /coverage
 
 *.rdb
+
+/vendor/bundle
+
+.env

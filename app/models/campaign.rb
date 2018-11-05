@@ -1,13 +1,17 @@
 
 
 class Campaign < ApplicationRecord
+  include Rails.application.routes.url_helpers
   extend FriendlyId
+
   friendly_id :title, use: :slugged
 
   belongs_to :user
   has_many :donations
 
   validates_presence_of :title
+
+  after_create :send_to_mailchimp
 
   def self.new_landing_campaign(type, user)
     if type == "teachers"
@@ -27,6 +31,15 @@ class Campaign < ApplicationRecord
 
 
   private
+  def send_to_mailchimp
+    Mailchimp.update_member(self.user.email, ENV['MAILCHIMP_API_KEY'], ENV['MAILCHIMP_LIST_ID'], {
+      FNAME: self.user.first_name,
+      LNAME: self.user.last_name,
+      R4FREE19: "Yes",
+      RFFURL: campaign_url(self)
+    })
+  end
+
     def self.teacher_campaign(user)
       Campaign.new(
         user: user,

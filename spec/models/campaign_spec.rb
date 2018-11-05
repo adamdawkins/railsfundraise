@@ -1,11 +1,17 @@
 require 'rails_helper'
+require_relative "../../lib/mailchimp"
 
 RSpec.describe Campaign, type: :model do
   it { is_expected.to belong_to(:user) }
   it { is_expected.to have_many(:donations) }
   it { is_expected.to validate_presence_of(:title) }
+  
 
   describe "new_landing_campaign" do
+    before do 
+      allow_any_instance_of(Campaign).to receive(:send_to_mailchimp).and_return true
+    end
+
     let (:user) { FactoryBot.create(:user) }
     describe "type is 'run_for_freedom'" do
       it "returns a campaign with run for freedom information" do
@@ -60,6 +66,33 @@ RSpec.describe Campaign, type: :model do
           expect(campaign.progress).to eq 7.5
         end
       end
+    end
+  end
+
+  describe "after_create" do
+    before do
+      subject.slug = "my-campaign"
+      subject.user = FactoryBot.create(:user)
+      allow(Mailchimp).to receive(:update_member)
+    end
+
+    it "calls Mailchimp.update_member after commit" do
+      ENV["MAILCHIMP_API_KEY"] = "apikey-us26"
+      ENV["MAILCHIMP_LIST_ID"] = "a_list_id"
+
+      subject.run_callbacks(:create)
+
+      expect(Mailchimp).to have_received(:update_member).with(
+        subject.user.email,
+        "apikey-us26",
+        "a_list_id",
+        {
+          FNAME: subject.user.first_name,
+          LNAME: subject.user.last_name,
+          RFFURL: "http://localhost:3000/#{subject.slug}",
+          R4FREE19: "Yes"
+        }
+      )
     end
   end
 end

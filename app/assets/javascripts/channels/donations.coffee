@@ -17,4 +17,4 @@ App.donations = App.cable.subscriptions.create { channel: "DonationsChannel", sl
     @collection().appendChild(html(data.donation))
 
   update_totals: (raised) ->
-    document.getElementById('raised').innerText = raised
+    document.getElementById('raised').innerText = raised if document.getElementById('raised') != null

@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Users::RegistrationsController, type: :controller do
   before :each do
     @request.env['devise.mapping'] = Devise.mappings[:user]
+    allow_any_instance_of(Campaign).to receive(:send_to_mailchimp).and_return(true)
   end
 
   describe "GET #new" do
