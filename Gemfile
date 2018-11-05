@@ -21,6 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'guard'

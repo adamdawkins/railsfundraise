@@ -18,7 +18,8 @@ class Mailchimp
   end
 
   def self.update_member(email, api_key, list_id, merge_fields)
-    base_connection(api_key).put do |req|
+    puts [email, api_key, list_id, merge_fields]
+    response = base_connection(api_key).put do |req|
       req.url member_url(api_key, list_id, email)
       req.headers['Content-Type'] = 'application/json'
       req.body = {
@@ -28,5 +29,7 @@ class Mailchimp
         merge_fields: merge_fields
       }.to_json
     end
+
+    puts response.body
   end
 end
