@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :campaign do
+    before(:create){|campaign| campaign.define_singleton_method(:send_to_mailchimp){}}
     user
     title { Faker::Book.title }
     description { "MyString" }
@@ -7,6 +8,7 @@ FactoryBot.define do
     target { 1.5 }
     slug { "string" }
     campaign_type { "CHALLENGE" }
+
 
     trait :teacher do
       title { "#{Faker::Name.name}'s Christmas Giving" }
@@ -23,5 +25,6 @@ FactoryBot.define do
         TEACHER
       }
     end
+
   end
 end
