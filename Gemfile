@@ -10,6 +10,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.1.3'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
+gem 'faraday'
 gem 'friendly_id'
 gem 'jbuilder', '~> 2.5'
 gem 'puma', '~> 3.11'
@@ -46,4 +47,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '4.0.0.rc1'
   gem 'simplecov', require: false
+  gem 'webmock'
 end
