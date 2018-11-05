@@ -6,6 +6,10 @@ Given("a campaign exists") do
   @campaign = FactoryBot.create(:campaign)
 end
 
+Given("a teacher campaign exists") do
+  @campaign = FactoryBot.create(:campaign, :teacher)
+end
+
 Given("{int} campaigns exist") do |number|
   @campaigns = number.times.collect { FactoryBot.create(:campaign) }
 end
