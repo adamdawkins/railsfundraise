@@ -5,10 +5,9 @@ RSpec.describe Campaign, type: :model do
   it { is_expected.to belong_to(:user) }
   it { is_expected.to have_many(:donations) }
   it { is_expected.to validate_presence_of(:title) }
-  
 
   describe "new_landing_campaign" do
-    before do 
+    before do
       allow_any_instance_of(Campaign).to receive(:send_to_mailchimp).and_return true
     end
 
@@ -33,9 +32,9 @@ RSpec.describe Campaign, type: :model do
       end
     end
 
-    describe "type is 'birthday'" do 
+    describe "type is 'birthday'" do
       it "returns a campaign with birthday information" do
-        campaign = Campaign.new_landing_campaign('birthday', user, { month: 11, day: 9 })
+        campaign = Campaign.new_landing_campaign('birthday', user, month: 11, day: 9)
 
         expect(campaign.title).to match /Birthday/
         expect(campaign.campaign_type).to eq 'OCCASION'
@@ -48,12 +47,12 @@ RSpec.describe Campaign, type: :model do
         end
 
         it "sets it to later this year if the birthday hasn't happened yet this year" do
-          campaign = Campaign.new_landing_campaign('birthday', user, { month: 11, day: 9 })
+          campaign = Campaign.new_landing_campaign('birthday', user, month: 11, day: 9)
           expect(campaign.target_date).to eq Date.new(2018, 11, 9)
         end
 
         it "sets it to next year if it's the birthday has already happened this year" do
-          campaign = Campaign.new_landing_campaign('birthday', user, { month: 10, day: 18 })
+          campaign = Campaign.new_landing_campaign('birthday', user, month: 10, day: 18)
           expect(campaign.target_date).to eq Date.new(2019, 10, 18)
         end
       end
@@ -112,12 +111,10 @@ RSpec.describe Campaign, type: :model do
         subject.user.email,
         "apikey-us26",
         "a_list_id",
-        {
-          FNAME: subject.user.first_name,
-          LNAME: subject.user.last_name,
-          RFFURL: "http://localhost:3000/#{subject.slug}",
-          R4FREE19: "Yes"
-        }
+        FNAME: subject.user.first_name,
+        LNAME: subject.user.last_name,
+        RFFURL: "http://localhost:3000/#{subject.slug}",
+        R4FREE19: "Yes"
       )
     end
   end

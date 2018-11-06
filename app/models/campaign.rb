@@ -1,4 +1,10 @@
-
+def next_birthday(date)
+  if date > Time.now
+    date
+  else
+    date.next_year
+  end
+end
 
 class Campaign < ApplicationRecord
   include Rails.application.routes.url_helpers
@@ -33,14 +39,14 @@ class Campaign < ApplicationRecord
 
 
   private
-  def send_to_mailchimp
-    Mailchimp.update_member(self.user.email, ENV['MAILCHIMP_API_KEY'], ENV['MAILCHIMP_LIST_ID'], {
-      FNAME: self.user.first_name,
-      LNAME: self.user.last_name,
-      R4FREE19: "Yes",
-      RFFURL: campaign_url(self)
-    })
-  end
+    def send_to_mailchimp
+      Mailchimp.update_member(self.user.email, ENV['MAILCHIMP_API_KEY'], ENV['MAILCHIMP_LIST_ID'],
+        FNAME: self.user.first_name,
+        LNAME: self.user.last_name,
+        R4FREE19: "Yes",
+        RFFURL: campaign_url(self)
+      )
+    end
 
     def self.teacher_campaign(user)
       Campaign.new(
@@ -53,10 +59,10 @@ class Campaign < ApplicationRecord
     end
 
     def self.birthday_campaign(user, birthday)
-      this_years_birthday = Date.new(Time.now.year, birthday[:month].to_i, birthday[:day].to_i)
-      target_birthday = this_years_birthday > Time.now ? this_years_birthday : this_years_birthday.next_year
+      target_birthday = next_birthday(
+        Date.new(Time.now.year, birthday[:month].to_i, birthday[:day].to_i)
+      )
 
-    
       Campaign.new(
         user: user,
         title: "#{user.first_name}'s Birthday For Freedom",

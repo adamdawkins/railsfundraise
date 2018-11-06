@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    build_resource 
+    build_resource
     if params[:campaign_type] == "birthday"
       self.resource.campaigns.build
     end
@@ -53,7 +53,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name, :campaign_type, birthday: [:day, :month] ])
+    devise_parameter_sanitizer.permit(
+      :sign_up,
+      keys: [:full_name, :campaign_type, birthday: [:day, :month] ]
+    )
   end
 
   # If you have extra params to permit, append them to the sanitizer.

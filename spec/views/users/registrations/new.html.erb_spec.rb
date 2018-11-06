@@ -10,7 +10,7 @@ describe 'users/registrations/new.html.erb', type: :view do
   #   end
   #
   #   it "has a campaign target_date field named as birthday" do
-  #     render 
+  #     render
   #
   #     expect(rendered).to have_content "birthday"
   #   end

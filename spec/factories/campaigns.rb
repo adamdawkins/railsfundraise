@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :campaign do
-    before(:create){|campaign| campaign.define_singleton_method(:send_to_mailchimp){}}
+    before(:create) { |campaign| campaign.define_singleton_method(:send_to_mailchimp) {} }
     user
     title { Faker::Book.title }
     description { "MyString" }
@@ -25,6 +25,5 @@ FactoryBot.define do
         TEACHER
       }
     end
-
   end
 end
