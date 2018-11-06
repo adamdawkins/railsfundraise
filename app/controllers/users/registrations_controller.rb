@@ -17,9 +17,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     birthday = sign_up_params[:birthday]
     resource = build_resource(sign_up_params.except(:birthday))
     if resource.save
-      campaign = create_campaign resource, birthday
-      campaign.save
-      redirect_to campaign
+      create_campaign resource, birthday
+      redirect_to after_sign_up_path_for(resource)
     else
       render :new and return
     end
@@ -75,6 +74,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def create_campaign(user, birthday)
-    Campaign.new_landing_campaign(params[:campaign_type], user, birthday)
+    campaign = Campaign.new_landing_campaign(params[:campaign_type], user, birthday)
+    campaign.save 
   end
 end
