@@ -1,6 +1,7 @@
 Rails.application.configure do
   config.action_controller.perform_caching = true
 
+  config.action_mailer.default_url_options = { host: ENV["ROOT_URL"] }
   config.action_mailer.perform_caching = false
 
   config.active_record.dump_schema_after_migration = false
