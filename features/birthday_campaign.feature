@@ -6,7 +6,7 @@ Feature: Birthday campaigns
 
   Scenario: Create birthday campaign
     Given I am at "/birthdays"
-    When I click on "Pledge my birthday"
+    When I click on "I pledge my birthday"
     And I fill in my account details with full name "Adam Dawkins"
     And I fill in birth day as "9"
     And I fill in birth month as "November"
