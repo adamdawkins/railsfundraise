@@ -25,6 +25,9 @@
           </li>
         <% else %>
           <li class="nav-item">
+            <%= link_to "Find a Campaign", campaigns_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
             <%= link_to "Login", login_path, class: "nav-link" %>
           </li>
         <% end %>
