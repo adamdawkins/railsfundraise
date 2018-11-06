@@ -8,10 +8,10 @@ Feature: Birthday campaigns
     Given I am at "/birthdays"
     When I click on "Pledge my birthday"
     And I fill in my account details with full name "Adam Dawkins"
-    And I fill in birth day as "09"
+    And I fill in birth day as "9"
     And I fill in birth month as "November"
     And I submit the form
-    Then I should see "Adam Dawkins's Birthday"
-    And I should be at "/adam-dawkins-s-birthday"
+    Then I should be at "/adam-s-birthday-for-freedom"
+    And I should see "Adam's Birthday For Freedom"
     And I should not see "raised"
     And I should not see "target"

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get 'signup', to: 'users/registrations#new'
   end
 
+  get 'birthdays', to: 'landings#birthdays'
   get 'run-for-freedom', to: 'landings#run_for_freedom'
   get 'teachers', to: 'landings#teachers'
 

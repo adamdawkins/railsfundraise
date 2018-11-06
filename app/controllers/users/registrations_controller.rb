@@ -1,22 +1,27 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:new, :create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   def new
-    super
+    build_resource 
+    if params[:campaign_type] == "birthday"
+      self.resource.campaigns.build
+    end
   end
 
   # POST /resource
   def create
-    super do |resource|
-      if resource.save
-        create_campaign resource
-      else
-        render :new and return
-      end
+    birthday = sign_up_params[:birthday]
+    resource = build_resource(sign_up_params.except(:birthday))
+    if resource.save
+      campaign = create_campaign resource, birthday
+      campaign.save
+      redirect_to campaign
+    else
+      render :new and return
     end
   end
 
@@ -48,7 +53,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name, :campaign_type, birthday: [:day, :month] ])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -66,8 +71,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  def create_campaign(user)
-    campaign = Campaign.new_landing_campaign(params[:campaign_type], user)
-    campaign.save
+  def create_campaign(user, birthday)
+    Campaign.new_landing_campaign(params[:campaign_type], user, birthday)
   end
 end

@@ -27,6 +27,18 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         password_confirmation: 'password' }
     }
 
+    let (:params_with_birthday) {
+      { full_name: 'Adam Dawkins',
+        email: 'email@example.com',
+        password: 'password',
+        password_confirmation: 'password',
+        birthday: {
+          month: 11,
+          day: 9,
+        }
+      }
+    }
+
     it "saves the user" do
       expect do
         post :create, params: { user: params }
@@ -62,6 +74,13 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       it "creates a campaign with title `teacher's christmas giving" do
         post :create, params: { user: params, campaign_type: "teachers" }
         expect(Campaign.last.title).to eq "#{params[:full_name]}'s Christmas Giving"
+      end
+    end
+
+    describe "with campaign type of `birthday`" do
+      it "creates a campaign with title First Name's Birthday For Freedom" do
+        post :create, params: { user: params_with_birthday, campaign_type: "birthday" }
+        expect(Campaign.last.title).to eq "Adam's Birthday For Freedom"
       end
     end
   end

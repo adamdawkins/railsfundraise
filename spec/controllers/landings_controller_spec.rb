@@ -16,4 +16,12 @@ RSpec.describe LandingsController, type: :controller do
       assert_template "landings/teachers"
     end
   end
+
+  describe "GET /birthdays" do
+    it "renders the birthdays template" do
+      get :birthdays
+
+      assert_template "landings/birthdays"
+    end
+  end
 end
