@@ -9,7 +9,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   config.active_support.deprecation = :notify
-  
+
   config.assets.compile = false
   config.assets.js_compressor = :uglifier
 
@@ -32,5 +32,4 @@ Rails.application.configure do
   end
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
-
 end

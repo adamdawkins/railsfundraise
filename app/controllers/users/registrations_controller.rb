@@ -75,6 +75,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create_campaign(user, birthday)
     campaign = Campaign.new_landing_campaign(params[:campaign_type], user, birthday)
-    campaign.save 
+    campaign.save
   end
 end
