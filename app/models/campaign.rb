@@ -13,8 +13,10 @@ class Campaign < ApplicationRecord
 
   after_create :send_to_mailchimp
 
-  def self.new_landing_campaign(type, user)
-    if type == "teachers"
+  def self.new_landing_campaign(type, user, birthday = nil)
+    if type == "birthday"
+      Campaign.birthday_campaign(user, birthday)
+    elsif type == "teachers"
       Campaign.teacher_campaign user
     else
       Campaign.run_for_freedom_campaign user
@@ -49,6 +51,20 @@ class Campaign < ApplicationRecord
         description: Campaign.teacher_description
       )
     end
+
+    def self.birthday_campaign(user, birthday)
+      this_years_birthday = Date.new(Time.now.year, birthday[:month].to_i, birthday[:day].to_i)
+      target_birthday = this_years_birthday > Time.now ? this_years_birthday : this_years_birthday.next_year
+
+    
+      Campaign.new(
+        user: user,
+        title: "#{user.first_name}'s Birthday For Freedom",
+        campaign_type: "OCCASION",
+        target_date: target_birthday.to_datetime
+      )
+    end
+
     def self.run_for_freedom_campaign(user)
       Campaign.new(
         user: user,
@@ -59,6 +75,8 @@ class Campaign < ApplicationRecord
         description: Campaign.run_for_freedom_description
       )
     end
+
+
     def self.run_for_freedom_description
       <<-RUN_FOR_FREEDOM
           On the 22nd March 2019, I will be running through the night to bring freedom to those living in modern slavery.

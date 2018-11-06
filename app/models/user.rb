@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :campaigns
 
+  accepts_nested_attributes_for :campaigns
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

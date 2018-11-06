@@ -33,6 +33,32 @@ RSpec.describe Campaign, type: :model do
       end
     end
 
+    describe "type is 'birthday'" do 
+      it "returns a campaign with birthday information" do
+        campaign = Campaign.new_landing_campaign('birthday', user, { month: 11, day: 9 })
+
+        expect(campaign.title).to match /Birthday/
+        expect(campaign.campaign_type).to eq 'OCCASION'
+        expect(campaign.target).to be_nil
+      end
+
+      describe "target_date" do
+        before do
+          allow(Time).to receive(:now).and_return(Date.new(2018, 11, 1).to_datetime)
+        end
+
+        it "sets it to later this year if the birthday hasn't happened yet this year" do
+          campaign = Campaign.new_landing_campaign('birthday', user, { month: 11, day: 9 })
+          expect(campaign.target_date).to eq Date.new(2018, 11, 9)
+        end
+
+        it "sets it to next year if it's the birthday has already happened this year" do
+          campaign = Campaign.new_landing_campaign('birthday', user, { month: 10, day: 18 })
+          expect(campaign.target_date).to eq Date.new(2019, 10, 18)
+        end
+      end
+    end
+
     describe "#raised" do
       describe "with no donations" do
         it "returns 0" do

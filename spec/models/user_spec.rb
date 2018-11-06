@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it { is_expected.to have_many(:campaigns) }
+  it { is_expected.to accept_nested_attributes_for(:campaigns) }
 
   describe "first_name" do
     it "returns the name before the first space in full name" do

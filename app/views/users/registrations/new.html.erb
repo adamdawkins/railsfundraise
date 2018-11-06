@@ -19,6 +19,14 @@
       <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "password" %>
     </div>
+    <% if params[:campaign_type] == 'birthday' %>
+      <%= form_group do %>
+        <%= label_tag "birthday_day", "Your Birthday" %>
+        <div>
+          <%= select_date Time.now, prefix: "user[birthday]", order: [:day, :month] %>
+        </div>
+      <% end %>
+    <% end %>
     <%= f.submit "Sign Up", class: "btn btn-primary btn-block" %>
   <% end %>
   <small class="text-muted">You can find out more about our <a href="https://www.justiceandcare.com/privacy-policy/">privacy policy</a></small>

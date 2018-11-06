@@ -4,4 +4,7 @@ class LandingsController < ApplicationController
 
   def teachers
   end
+
+  def birthdays
+  end
 end
