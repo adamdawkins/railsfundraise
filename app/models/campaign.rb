@@ -67,7 +67,8 @@ class Campaign < ApplicationRecord
         user: user,
         title: "#{user.first_name}'s Birthday For Freedom",
         campaign_type: "OCCASION",
-        target_date: target_birthday.to_datetime
+        target_date: target_birthday.to_datetime,
+        description: Campaign.birthday_description
       )
     end
 
@@ -102,5 +103,12 @@ class Campaign < ApplicationRecord
 
   I don't need more chocolates, please give to these people instead.
       TEACHER
+    end
+    def self.birthday_description
+      <<-BIRTHDAY
+      When you’re a child abused in a brothel or working 18 hours days in a blisteringly hot factory, you don’t get to celebrate your birthday. That’s why this year as my big day approaches, rather than ask for gifts I’m asking for help to bring freedom to those affected.
+
+Your gift will help Justice and Care track down victims and those responsible. Anything you can give will make a difference.
+      BIRTHDAY
     end
 end
