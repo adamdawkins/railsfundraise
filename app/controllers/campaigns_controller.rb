@@ -1,5 +1,7 @@
 class CampaignsController < ApplicationController
-  before_action :set_campaign, only: [:show, :update]
+  before_action :authenticate_user!, only: [:edit, :update]
+  before_action :verify_ownership!, only: [:edit, :update]
+  before_action :set_campaign, only: [:show]
   def show
   end
 
@@ -8,9 +10,6 @@ class CampaignsController < ApplicationController
   end
 
   def edit
-    authenticate_user!
-    set_campaign
-    verify_ownership!
   end
 
   def update
@@ -34,6 +33,6 @@ class CampaignsController < ApplicationController
 
     def verify_ownership!
       set_campaign
-      redirect_to @campaign unless @campaign.user == current_user
+      redirect_to(@campaign) and return unless @campaign.user == current_user
     end
 end
