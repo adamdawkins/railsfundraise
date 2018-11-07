@@ -6,6 +6,11 @@ end
 
 Given("I have an account with email {string} and password {string}") do |email, password|
   @me = User.create(email: email, password: password, full_name: 'Joseph H. Bloggs')
+  @my_password = password
+end
+
+Given("I have an account") do
+  steps %{ Given I have an account with email "joe@example.com" and password "P00lcL34n1n5" }
 end
 
 When("I fill in my account details with full name {string}") do |full_name|
