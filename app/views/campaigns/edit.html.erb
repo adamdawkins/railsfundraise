@@ -1,0 +1,32 @@
+<div class="very-short banner" style="background-image: url(https://www.justiceandcare.org/wp-content/uploads/2018/05/i-zv2HKVZ-X3-e1526466415791.jpg)">
+  <div class="center-content">
+    <div>
+      <h1>Update your campaign</h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <%= form_for @campaign, method: :put, html: { class: "py-4 col-8" } do |f| %>
+      <%= form_group do %>
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control" %>
+      <% end %>
+      <% if @campaign.campaign_type == 'CHALLENGE' %>
+        <%= form_group do %>
+          <%= f.label :target %>
+          <%= f.number_field :target, class: "form-control" %>
+        <% end %>
+      <% end %>
+      <%= form_group do %>
+        <%= f.label :target_date %>
+        <%= f.date_select :target_date, order: [:day, :month, :year], class: "form-control" %>
+      <% end %>
+      <%= form_group do %>
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "form-control", rows: 10  %>
+      <% end %>
+      <%= f.submit "Update Campaign", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

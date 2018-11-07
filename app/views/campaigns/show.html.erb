@@ -1,11 +1,11 @@
 <%= content_for :head do %>
   <script src="https://donorbox.org/install-popup-button.js" defer></script>
-          <script>
-  			window.DonorBox = { widgetLinkClassName: 'custom-dbox-popup' }
-          </script>
+  <script>
+    window.DonorBox = { widgetLinkClassName: 'custom-dbox-popup' }
+  </script>
 
 <% end %>
-<div class="jumbotron jumbotron-fluid d-flex align-items-end pt-0 pb-4" style="height: 60vh; background-image: url('<%= asset_path "woman.jpg" %>'); background-position: center top; background-size: cover">
+<div class="jumbotron jumbotron-fluid d-flex align-items-end pt-0 pb-4 mb-0" style="height: 60vh; background-image: url('<%= asset_path "woman.jpg" %>'); background-position: center top; background-size: cover">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -20,7 +20,15 @@
     </div>
   </div>
 </div>
-		<div class="container">
+<% if user_signed_in? && current_user.id == @campaign.user_id %>
+  <div style="background: #ddd; padding: 1em;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: baseline;">
+      <p>You can make changes to your campaign page</p>
+      <%= link_to "Edit your campaign", edit_campaign_path(@campaign), class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+		<div class="container mt-4">
 			<div class="row">
 				<div class="col col-12 col-md-5">
           <h4 class="d-block d-md-none">

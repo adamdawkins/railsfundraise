@@ -36,3 +36,16 @@ Then("I should see the campaigns") do
     expect(page).to have_content(campaign.title)
   end
 end
+
+# Routing
+When("I go to my campaign") do
+  visit campaign_path @me.campaign
+end
+
+When("I go to edit my campaign") do
+  visit edit_campaign_path @me.campaign
+end
+
+Then("I should be on my campaign page") do
+  expect(page).to have_current_path(campaign_path(@me.campaign))
+end
