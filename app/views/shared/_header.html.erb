@@ -9,7 +9,9 @@
           <li class="menu-item"><%= link_to "Teachers", teachers_path %></li>
           <li class="menu-item"><%= link_to "Birthdays", birthdays_path %></li>
           <% if user_signed_in? %>
-            <li class="menu-item"><%= link_to "My Campaign", campaign_path(current_user.campaigns.first) %></li>
+            <% if current_user.campaigns.any? %>
+              <li class="menu-item"><%= link_to "My Campaign", campaign_path(current_user.campaigns.first) %></li>
+            <% end %>
             <li class="menu-item"><%= link_to "Logout",  destroy_user_session_path, method: :delete %></li>
           <% else %>
             <li class="menu-item "><%= link_to "Find a campaign", campaigns_path %></li>
