@@ -3,7 +3,7 @@ Given("I am not logged in") do
 end
 
 Given("I am logged in") do
-  @me = User.create(username: 'adam', email: 'adam@dragondrop.uk', password: 'password')
+  @me ||= User.create(email: 'adam@dragondrop.uk', password: 'password')
 
   steps %{
     When I login with email "adam@dragondrop.uk" and password "password"
