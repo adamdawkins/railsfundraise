@@ -40,24 +40,57 @@ RSpec.describe CampaignsController, type: :controller do
 
 
   describe "GET edit" do
-    let(:campaign) { FactoryBot.create(:campaign) }
+    describe "logged in as owner of the campaign" do
+      let(:user) { FactoryBot.create(:user) }
+      let(:campaign) { FactoryBot.create(:campaign, user: user) }
+      before do
+        allow(Campaign).to receive_message_chain(:friendly, :find).and_return(campaign)
+        allow(request.env['warden']).to receive(:authenticate!).and_return(user)
+        allow(controller).to receive(:current_user).and_return(user)
+      end
 
-    before do
-      allow(Campaign).to receive_message_chain(:friendly, :find).and_return(campaign)
+      it "sets campaign to the campaign id provided" do
+        get :edit, params: { id: 'slug' }
+
+        expect(assigns(:campaign)).to be_a Campaign
+      end
+
+      it "renders the edit template" do
+        get :edit, params: { id: 'slug' }
+
+        assert_template 'campaigns/edit'
+      end
     end
 
-    it "sets campaign to the campaign id provided" do
-      get :edit, params: { id: 'slug' }
+    describe "when not logged in" do
+      let(:campaign) { FactoryBot.create(:campaign) }
+      before do
+        allow(request.env['warden']).to receive(:authenticate!).and_throw(:warden, scope: :user)
+        allow(controller).to receive(:current_user).and_return(nil)
+        get :edit, params: { id: 'slug' }
+      end
 
-      expect(assigns(:campaign)).to be_a Campaign
+      it "should redirect me to the sign-in page" do
+        expect(response).to redirect_to(new_user_session_path)
+      end
     end
+    describe "logged in as someone not the owner of the campaign" do
+      let(:user) { FactoryBot.create(:user) }
+      let(:campaign) { FactoryBot.create(:campaign) }
+      before do
+        allow(Campaign).to receive_message_chain(:friendly, :find).and_return(campaign)
+        allow(request.env['warden']).to receive(:authenticate!).and_return(user)
+        allow(controller).to receive(:current_user).and_return(user)
+      end
 
-    it "renders the edit template" do
-      get :edit, params: { id: 'slug' }
+      it "redirects to the campaign page" do
+        get :edit, params: { id: 'slug' }
 
-      assert_template 'campaigns/edit'
+        expect(response).to redirect_to(campaign_path(campaign))
+      end
     end
   end
+
 
   describe "PATCH update" do
     let(:campaign) { FactoryBot.create(:campaign) }

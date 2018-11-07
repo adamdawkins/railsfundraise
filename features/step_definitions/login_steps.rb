@@ -1,4 +1,4 @@
-Given("I am not logged in") do
+Given(/^(?:I am|they are) not logged in/) do
   Capybara.current_session.driver.browser.clear_cookies
 end
 

@@ -42,10 +42,18 @@ When("I go to my campaign") do
   visit campaign_path @me.campaign
 end
 
-When("I go to edit my campaign") do
+When(/^(?:I|they) go to edit my campaign/) do
   visit edit_campaign_path @me.campaign
 end
 
-Then("I should be on my campaign page") do
+When(/^(?:I|they) go to edit the campaign/) do
+  visit edit_campaign_path @campaign
+end
+
+Then(/^(?:I|they) should be on my campaign page/) do
   expect(page).to have_current_path(campaign_path(@me.campaign))
+end
+
+Then(/^(?:I|they) should be on the campaign page/) do
+  expect(page).to have_current_path(campaign_path(@campaign))
 end
