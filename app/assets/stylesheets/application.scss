@@ -23,5 +23,17 @@ img {
 }
 
 @import "./components/banner";
-@import "./components/nav";
+@import "./components/header";
+@import "./components/logo";
+@import "./components/menu";
 @import "./components/snackbar";
+
+.svg-inline--fa {
+	height: 1em;
+	display: inline-block;
+	overflow: visible;
+}
+
+.fa-w-14 {
+	width: .875em;
+}

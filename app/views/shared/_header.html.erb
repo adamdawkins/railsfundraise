@@ -1,36 +1,24 @@
-<nav class="navbar navbar-expand-lg fixed-top pt-2 py-4 align-middle">
-  <a class="navbar-brand" href="#">
-    <img src="https://www.justiceandcare.org/wp-content/themes/justice-care/img/j-c-logo-white.png" alt="Justice &amp; Care">
-  </a>
-  </button>
+<header class="header">
+      <a href="/" class="logo">
+        <img src="https://www.justiceandcare.org/wp-content/themes/justice-care/img/j-c-logo-white.png" alt="Justice &amp; Care">
+      </a>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <%= link_to "Run for freedom", run_for_freedom_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Birthdays", birthdays_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Teachers", teachers_path, class: "nav-link" %>
-      </li>
-      <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "My Campaign", current_user.campaigns.first, class: "nav-link" %>
-        </li>
-        <li>
-          <li class="nav-item">
-            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Find a Campaign", campaigns_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Login", login_path, class: "nav-link" %>
-          </li>
-        <% end %>
-    </ul>
-  </div>
-</nav>
+      <nav>
+        <ul id="menu-main-nav" class="menu">
+          <li class="menu-item"><%= link_to "Run for freedom", run_for_freedom_path %></li>
+          <li class="menu-item"><%= link_to "Teachers", teachers_path %></li>
+          <li class="menu-item"><%= link_to "Birthdays", birthdays_path %></li>
+          <% if user_signed_in? %>
+            <li class="menu-item"><%= link_to "My Campaign", campaign_path(current_user.campaigns.first) %></li>
+            <li class="menu-item"><%= link_to "Logout",  destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li class="menu-item "><%= link_to "Find a campaign", campaigns_path %></li>
+            <li class="menu-item"> <%= link_to "Login", login_path %> </li>
+          <% end %>
+        </ul>
+        <span id="menu-trigger">
+          <svg class="svg-inline--fa fa-times fa-w-12" aria-hidden="true" data-prefix="far" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M231.6 256l130.1-130.1c4.7-4.7 4.7-12.3 0-17l-22.6-22.6c-4.7-4.7-12.3-4.7-17 0L192 216.4 61.9 86.3c-4.7-4.7-12.3-4.7-17 0l-22.6 22.6c-4.7 4.7-4.7 12.3 0 17L152.4 256 22.3 386.1c-4.7 4.7-4.7 12.3 0 17l22.6 22.6c4.7 4.7 12.3 4.7 17 0L192 295.6l130.1 130.1c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17L231.6 256z"></path></svg><!-- <i class="far fa-times"></i> --><svg class="svg-inline--fa fa-align-left fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="align-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M288 44v40c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16V44c0-8.837 7.163-16 16-16h256c8.837 0 16 7.163 16 16zM0 172v40c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16zm16 312h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm256-200H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16h256c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16z"></path></svg><!-- <i class="fas fa-align-left"></i> --> Menu
+        </span>
+
+      </nav>
+    </header>
