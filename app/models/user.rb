@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def last_name
     full_name.split(' ').last
   end
+
+  def campaign
+    campaigns.first
+  end
 end

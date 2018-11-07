@@ -17,4 +17,12 @@ RSpec.describe User, type: :model do
       expect(user.last_name).to eq 'Bowen'
     end
   end
+
+  describe "campaign" do
+    it "returns the first of the user's campaigns" do
+      campaigns = FactoryBot.build_list(:campaign, 2)
+      subject.campaigns = campaigns
+      expect(subject.campaign).to eq(campaigns.first)
+    end
+  end
 end
