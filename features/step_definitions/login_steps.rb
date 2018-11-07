@@ -4,16 +4,16 @@ end
 
 Given("I am logged in") do
   @me ||= User.create(email: 'adam@dragondrop.uk', password: 'password')
+  @my_password ||= 'password'
 
   steps %{
-    When I login with email "adam@dragondrop.uk" and password "password"
+    When I login with email "#{@me.email}" and password "#{@my_password}"
   }
-  puts @me
 end
 
 When("I login") do
   steps %{
-    When I login with email "#{@me.email}" and password "#{@me.password}"
+    When I login with email "#{@me.email}" and password "#{@my_password}"
   }
 end
 
