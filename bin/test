@@ -24,6 +24,7 @@ if [ $# -gt 0 ]; then # we have args
     grep -r '\bspec_helper\b' $grep_filename > /dev/null || need_rails=''
 
 		if [[ "$filename" =~ .*\.feature.* ]]; then
+      need_rails=1
 			command="cucumber"
 		fi
 

@@ -60,4 +60,52 @@ describe 'campaigns/show.html.erb' do
       end
     end
   end
+
+  describe "managing your campaign" do
+    describe "as the fundraiser" do
+      let(:current_user) { FactoryBot.create(:user) }
+      before do
+        campaign = FactoryBot.create(:campaign, user: current_user)
+        allow(view).to receive(:user_signed_in?).and_return(true)
+        allow(view).to receive(:current_user).and_return(current_user)
+        assign(:campaign, campaign)
+      end
+
+      it "shows an Edit Your Campaign link" do
+        render
+
+        expect(rendered).to have_content("Edit your campaign")
+      end
+    end
+
+    describe "as a different fundraiser" do
+      let(:current_user) { FactoryBot.create(:user) }
+      before do
+        allow(view).to receive(:user_signed_in?).and_return(true)
+        allow(view).to receive(:current_user).and_return(current_user)
+        campaign = FactoryBot.create(:campaign)
+        assign(:campaign, campaign)
+      end
+
+      it "doesn't show an Edit Your Campaign link" do
+        render
+
+        expect(rendered).to_not have_content("Edit your campaign")
+      end
+    end
+
+    describe "as a guest" do
+      let(:current_user) { nil }
+      before do
+        campaign = FactoryBot.create(:campaign)
+        assign(:campaign, campaign)
+      end
+
+      it "doesn't show an Edit Your Campaign link" do
+        render
+
+        expect(rendered).to_not have_content("Edit your campaign")
+      end
+    end
+  end
 end

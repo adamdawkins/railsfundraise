@@ -6,9 +6,15 @@ FactoryBot.define do
     description { "MyString" }
     target_date { "2018-10-30" }
     target { 1.5 }
-    slug { "string" }
     campaign_type { "CHALLENGE" }
 
+
+    trait :run_for_freedom do
+      title { "#{Faker::Name.first_name}'s Run for Freedom" }
+      campaign_type { "CHALLENGE" }
+      target { 100 }
+      target_date { Date.new(2019, 03, 22) }
+    end
 
     trait :teacher do
       title { "#{Faker::Name.name}'s Christmas Giving" }
