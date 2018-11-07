@@ -50,3 +50,8 @@ Given("I have reset the password for {string} to {string}") do |email, password|
   fill_in "user[password_confirmation]", with: password
   click_on "Change my password"
 end
+
+# Routes
+Then(/^(?:I|they) should be on the sign in page/) do
+  expect(page).to have_current_path(new_user_session_path)
+end

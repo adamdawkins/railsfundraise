@@ -1,5 +1,7 @@
 class CampaignsController < ApplicationController
-  before_action :set_campaign, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:edit, :update]
+  before_action :verify_ownership!, only: [:edit, :update]
+  before_action :set_campaign, only: [:show]
   def show
   end
 
@@ -22,10 +24,15 @@ class CampaignsController < ApplicationController
 
   private
     def set_campaign
-      @campaign = Campaign.friendly.find(params[:id])
+      @campaign ||= Campaign.friendly.find(params[:id])
     end
 
     def campaign_params
       params.require(:campaign).permit(:title, :target, :target_date, :description)
+    end
+
+    def verify_ownership!
+      set_campaign
+      redirect_to(@campaign) and return unless @campaign.user == current_user
     end
 end
